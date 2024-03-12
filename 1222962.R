@@ -2,7 +2,7 @@
 # Exam Number 1222962
 # March 2024
 
-# Assignment: Biomarkers and pain
+# Assignment: Biomarkers and Pain
 
 # References
 #
@@ -11,7 +11,7 @@
 
 ################################################################################
 #
-# Data Preparation
+# 0. Data Preparation
 #
 ################################################################################
 
@@ -59,7 +59,7 @@ cat("Data prepared for", nrow(biomarkers_covariates_patientid), "patients.\n")
 
 ################################################################################
 #
-# Statistical Hypothesis Testing
+# 1. Statistical Hypothesis Testing
 #
 ################################################################################
 
@@ -102,7 +102,7 @@ hist(biomarkers_covariates_patientid_female$`IL-18_0weeks`, main = "IL-18 Levels
 hist(biomarkers_covariates_patientid_female$`CSF-1_0weeks`, main = "CSF-1 Levels At Inclusion (Female)", xlab = histlab)
 
 # Create a results table.
-hyptest_results <- matrix(c(1:54), ncol = 6)
+hyptest_results <- matrix(c(1 : 54), ncol = 6)
 colnames(hyptest_results) <- c('Sample Mean (Male)', 'Sample Mean (Female)', 'p-value H1', 'p-value H2', 'H1 rejects H0 (5%)', 'H2 rejects H0 (5%)')
 rownames(hyptest_results) <- biomarker_names
 
@@ -128,31 +128,31 @@ hyptest_results[8, 2] <- mean(biomarkers_covariates_patientid_female$`IL-18_0wee
 hyptest_results[9, 2] <- mean(biomarkers_covariates_patientid_female$`CSF-1_0weeks`)
 
 # Compute the H1 p-value for each biomarker and populate the results table.
-hyptest_results[1, 3] <- t.test(biomarkers_covariates_patientid_male$`IL-8_0weeks`, biomarkers_covariates_patientid_female$`IL-8_0weeks`, alternative="greater")$p.value
-hyptest_results[2, 3] <- t.test(biomarkers_covariates_patientid_male$`VEGF-A_0weeks`, biomarkers_covariates_patientid_female$`VEGF-A_0weeks`, alternative="greater")$p.value
-hyptest_results[3, 3] <- t.test(biomarkers_covariates_patientid_male$`OPG_0weeks`, biomarkers_covariates_patientid_female$`OPG_0weeks`, alternative="greater")$p.value
-hyptest_results[4, 3] <- t.test(biomarkers_covariates_patientid_male$`TGF-beta-1_0weeks`, biomarkers_covariates_patientid_female$`TGF-beta-1_0weeks`, alternative="greater")$p.value
-hyptest_results[5, 3] <- t.test(biomarkers_covariates_patientid_male$`IL-6_0weeks`, biomarkers_covariates_patientid_female$`IL-6_0weeks`, alternative="greater")$p.value
-hyptest_results[6, 3] <- t.test(biomarkers_covariates_patientid_male$`CXCL9_0weeks`, biomarkers_covariates_patientid_female$`CXCL9_0weeks`, alternative="greater")$p.value
-hyptest_results[7, 3] <- t.test(biomarkers_covariates_patientid_male$`CXCL1_0weeks`, biomarkers_covariates_patientid_female$`CXCL1_0weeks`, alternative="greater")$p.value
-hyptest_results[8, 3] <- t.test(biomarkers_covariates_patientid_male$`IL-18_0weeks`, biomarkers_covariates_patientid_female$`IL-18_0weeks`, alternative="greater")$p.value
-hyptest_results[9, 3] <- t.test(biomarkers_covariates_patientid_male$`CSF-1_0weeks`, biomarkers_covariates_patientid_female$`CSF-1_0weeks`, alternative="greater")$p.value
+hyptest_results[1, 3] <- t.test(biomarkers_covariates_patientid_male$`IL-8_0weeks`, biomarkers_covariates_patientid_female$`IL-8_0weeks`, alternative = "greater")$p.value
+hyptest_results[2, 3] <- t.test(biomarkers_covariates_patientid_male$`VEGF-A_0weeks`, biomarkers_covariates_patientid_female$`VEGF-A_0weeks`, alternative = "greater")$p.value
+hyptest_results[3, 3] <- t.test(biomarkers_covariates_patientid_male$`OPG_0weeks`, biomarkers_covariates_patientid_female$`OPG_0weeks`, alternative = "greater")$p.value
+hyptest_results[4, 3] <- t.test(biomarkers_covariates_patientid_male$`TGF-beta-1_0weeks`, biomarkers_covariates_patientid_female$`TGF-beta-1_0weeks`, alternative = "greater")$p.value
+hyptest_results[5, 3] <- t.test(biomarkers_covariates_patientid_male$`IL-6_0weeks`, biomarkers_covariates_patientid_female$`IL-6_0weeks`, alternative = "greater")$p.value
+hyptest_results[6, 3] <- t.test(biomarkers_covariates_patientid_male$`CXCL9_0weeks`, biomarkers_covariates_patientid_female$`CXCL9_0weeks`, alternative = "greater")$p.value
+hyptest_results[7, 3] <- t.test(biomarkers_covariates_patientid_male$`CXCL1_0weeks`, biomarkers_covariates_patientid_female$`CXCL1_0weeks`, alternative = "greater")$p.value
+hyptest_results[8, 3] <- t.test(biomarkers_covariates_patientid_male$`IL-18_0weeks`, biomarkers_covariates_patientid_female$`IL-18_0weeks`, alternative = "greater")$p.value
+hyptest_results[9, 3] <- t.test(biomarkers_covariates_patientid_male$`CSF-1_0weeks`, biomarkers_covariates_patientid_female$`CSF-1_0weeks`, alternative = "greater")$p.value
 
 # Compute the H2 p-value for each biomarker and populate the results table.
-hyptest_results[1, 4] <- t.test(biomarkers_covariates_patientid_male$`IL-8_0weeks`, biomarkers_covariates_patientid_female$`IL-8_0weeks`, alternative="less")$p.value
-hyptest_results[2, 4] <- t.test(biomarkers_covariates_patientid_male$`VEGF-A_0weeks`, biomarkers_covariates_patientid_female$`VEGF-A_0weeks`, alternative="less")$p.value
-hyptest_results[3, 4] <- t.test(biomarkers_covariates_patientid_male$`OPG_0weeks`, biomarkers_covariates_patientid_female$`OPG_0weeks`, alternative="less")$p.value
-hyptest_results[4, 4] <- t.test(biomarkers_covariates_patientid_male$`TGF-beta-1_0weeks`, biomarkers_covariates_patientid_female$`TGF-beta-1_0weeks`, alternative="less")$p.value
-hyptest_results[5, 4] <- t.test(biomarkers_covariates_patientid_male$`IL-6_0weeks`, biomarkers_covariates_patientid_female$`IL-6_0weeks`, alternative="less")$p.value
-hyptest_results[6, 4] <- t.test(biomarkers_covariates_patientid_male$`CXCL9_0weeks`, biomarkers_covariates_patientid_female$`CXCL9_0weeks`, alternative="less")$p.value
-hyptest_results[7, 4] <- t.test(biomarkers_covariates_patientid_male$`CXCL1_0weeks`, biomarkers_covariates_patientid_female$`CXCL1_0weeks`, alternative="less")$p.value
-hyptest_results[8, 4] <- t.test(biomarkers_covariates_patientid_male$`IL-18_0weeks`, biomarkers_covariates_patientid_female$`IL-18_0weeks`, alternative="less")$p.value
-hyptest_results[9, 4] <- t.test(biomarkers_covariates_patientid_male$`CSF-1_0weeks`, biomarkers_covariates_patientid_female$`CSF-1_0weeks`, alternative="less")$p.value
+hyptest_results[1, 4] <- t.test(biomarkers_covariates_patientid_male$`IL-8_0weeks`, biomarkers_covariates_patientid_female$`IL-8_0weeks`, alternative = "less")$p.value
+hyptest_results[2, 4] <- t.test(biomarkers_covariates_patientid_male$`VEGF-A_0weeks`, biomarkers_covariates_patientid_female$`VEGF-A_0weeks`, alternative = "less")$p.value
+hyptest_results[3, 4] <- t.test(biomarkers_covariates_patientid_male$`OPG_0weeks`, biomarkers_covariates_patientid_female$`OPG_0weeks`, alternative = "less")$p.value
+hyptest_results[4, 4] <- t.test(biomarkers_covariates_patientid_male$`TGF-beta-1_0weeks`, biomarkers_covariates_patientid_female$`TGF-beta-1_0weeks`, alternative = "less")$p.value
+hyptest_results[5, 4] <- t.test(biomarkers_covariates_patientid_male$`IL-6_0weeks`, biomarkers_covariates_patientid_female$`IL-6_0weeks`, alternative = "less")$p.value
+hyptest_results[6, 4] <- t.test(biomarkers_covariates_patientid_male$`CXCL9_0weeks`, biomarkers_covariates_patientid_female$`CXCL9_0weeks`, alternative = "less")$p.value
+hyptest_results[7, 4] <- t.test(biomarkers_covariates_patientid_male$`CXCL1_0weeks`, biomarkers_covariates_patientid_female$`CXCL1_0weeks`, alternative = "less")$p.value
+hyptest_results[8, 4] <- t.test(biomarkers_covariates_patientid_male$`IL-18_0weeks`, biomarkers_covariates_patientid_female$`IL-18_0weeks`, alternative = "less")$p.value
+hyptest_results[9, 4] <- t.test(biomarkers_covariates_patientid_male$`CSF-1_0weeks`, biomarkers_covariates_patientid_female$`CSF-1_0weeks`, alternative = "less")$p.value
 
 # Calculate whether H0 was rejected by each alternative hypothesis at the 5% significance level.
-for (i in 1:2)
+for (i in 1 : 2)
 {
-  for (j in 1:9)
+  for (j in 1 : 9)
   {
     hyptest_results[j, i + 4] = 'No'
 
@@ -172,9 +172,9 @@ cat("FWER:", 1 - (1 - 0.05)^18, "\n")
 hyptest_results_bonferroni <- hyptest_results
 colnames(hyptest_results_bonferroni) <- c('Sample Mean (Male)', 'Sample Mean (Female)', 'p-value H1', 'p-value H2', 'H1 rejects H0 (5% / m)', 'H2 rejects H0 (5% / m)')
 
-for (i in 1:2)
+for (i in 1 : 2)
 {
-  for (j in 1:9)
+  for (j in 1 : 9)
   {
     hyptest_results_bonferroni[j, i + 4] = 'No'
     
@@ -192,7 +192,7 @@ cat("Bonferroni-corrected FWER:", 1 - (1 - (0.05 / 18))^18, "\n")
 
 ################################################################################
 #
-# Regression Modelling
+# 2. Regression Modelling
 #
 ################################################################################
 
@@ -204,7 +204,7 @@ biomarkers_covariates_patientid_regression <- biomarkers_covariates_patientid_re
 
 # Plot the 12-month VAS dependence on biomarker levels and covariates.
 attach(biomarkers_covariates_patientid_regression)
-par(mfrow=c(3, 3))
+par(mfrow = c(3, 3))
 plot(`IL-8_0weeks`, `Vas-12months`)
 m <- lm(`Vas-12months` ~ `IL-8_0weeks`)
 abline(coef(m), col = 2)
@@ -221,46 +221,46 @@ plot(`TGF-beta-1_0weeks`, `Vas-12months`)
 m <- lm(`Vas-12months` ~ `TGF-beta-1_0weeks`)
 abline(coef(m), col = 2)
 
-plot(`IL-6_0weeks`,`Vas-12months`)
+plot(`IL-6_0weeks`, `Vas-12months`)
 m <- lm(`Vas-12months` ~ `IL-6_0weeks`)
 abline(coef(m), col = 2)
 
-plot(`CXCL9_0weeks`,`Vas-12months`)
+plot(`CXCL9_0weeks`, `Vas-12months`)
 m <- lm(`Vas-12months` ~ `CXCL9_0weeks`)
 abline(coef(m), col = 2)
 
-plot(`CXCL1_0weeks`,`Vas-12months`)
+plot(`CXCL1_0weeks`, `Vas-12months`)
 m <- lm(`Vas-12months` ~ `CXCL1_0weeks`)
 abline(coef(m), col = 2)
 
-plot(`IL-18_0weeks`,`Vas-12months`)
+plot(`IL-18_0weeks`, `Vas-12months`)
 m <- lm(`Vas-12months` ~ `IL-18_0weeks`)
 abline(coef(m), col = 2)
 
-plot(`CSF-1_0weeks`,`Vas-12months`)
+plot(`CSF-1_0weeks`, `Vas-12months`)
 m <- lm(`Vas-12months` ~ `CSF-1_0weeks`)
 abline(coef(m), col = 2)
 
-plot(`Age`,`Vas-12months`)
+plot(`Age`, `Vas-12months`)
 m <- lm(`Vas-12months` ~ `Age`)
 abline(coef(m), col = 2)
 
-plot(`Sex.(1=male,.2=female)`,`Vas-12months`)
+plot(`Sex.(1=male,.2=female)`, `Vas-12months`)
 m <- lm(`Vas-12months` ~ `Sex.(1=male,.2=female)`)
 abline(coef(m), col = 2)
 
-plot(`Smoker.(1=yes,.2=no)`,`Vas-12months`)
+plot(`Smoker.(1=yes,.2=no)`, `Vas-12months`)
 m <- lm(`Vas-12months` ~ `Smoker.(1=yes,.2=no)`)
 abline(coef(m), col = 2)
 
-plot(`VAS-at-inclusion`,`Vas-12months`)
+plot(`VAS-at-inclusion`, `Vas-12months`)
 m <- lm(`Vas-12months` ~ `VAS-at-inclusion`)
 abline(coef(m), col = 2)
 detach()
 
 # Split the table 80/20.
-biomarkers_covariates_patientid_regression_80 <- biomarkers_covariates_patientid_regression[c(1:(nrow(biomarkers_covariates_patientid_regression) * 0.8)), colnames(biomarkers_covariates_patientid_regression), with = FALSE]
-biomarkers_covariates_patientid_regression_20 <- biomarkers_covariates_patientid_regression[c(((nrow(biomarkers_covariates_patientid_regression) * 0.8) + 1):(nrow(biomarkers_covariates_patientid_regression))), colnames(biomarkers_covariates_patientid_regression), with = FALSE]
+biomarkers_covariates_patientid_regression_80 <- biomarkers_covariates_patientid_regression[c(1 : (nrow(biomarkers_covariates_patientid_regression) * 0.8)), colnames(biomarkers_covariates_patientid_regression), with = FALSE]
+biomarkers_covariates_patientid_regression_20 <- biomarkers_covariates_patientid_regression[c(((nrow(biomarkers_covariates_patientid_regression) * 0.8) + 1) : (nrow(biomarkers_covariates_patientid_regression))), colnames(biomarkers_covariates_patientid_regression), with = FALSE]
 
 # Print the number of patients for which we have data.
 cat("80% regression data prepared for", nrow(biomarkers_covariates_patientid_regression_80), "patients.\n")
@@ -268,7 +268,7 @@ cat("20% regression data prepared for", nrow(biomarkers_covariates_patientid_reg
 
 # Using 80% of the patient data, fit a multiple linear regression model with 12-month VAS as the response variable and the biomarker levels at inclusion and covariates as explanatory variables.
 multiple_regression_model <- lm(`Vas-12months` ~ `IL-8_0weeks` + `VEGF-A_0weeks` + `OPG_0weeks` + `TGF-beta-1_0weeks` + `IL-6_0weeks` + `CXCL9_0weeks` + `CXCL1_0weeks` + `IL-18_0weeks` + `CSF-1_0weeks` + `Age` + `Sex.(1=male,.2=female)` + `Smoker.(1=yes,.2=no)` + `VAS-at-inclusion`, biomarkers_covariates_patientid_regression_80)
-summary(multiple_regression_model)$r.squared
+summary(multiple_regression_model)
 
 # Add the fitted values and residuals as new columns in the 80% data table.
 biomarkers_covariates_patientid_regression_80[, `Vas-12months-fitted` := predict(multiple_regression_model)]
@@ -276,20 +276,20 @@ biomarkers_covariates_patientid_regression_80[, `Vas-12months-residuals` := resi
 
 # Plot the fitted values and residuals against actual 12-month VAS.
 attach(biomarkers_covariates_patientid_regression_80)
-par(mfrow=c(1, 2))
+par(mfrow = c(1, 2))
 plot(`Vas-12months`, `Vas-12months-fitted`)
 plot(`Vas-12months`, `Vas-12months-residuals`)
 detach()
 
 # Predict 12 month VAS for the remaining 20% of the patient data and add them as a new column.
-biomarkers_covariates_patientid_regression_20[, `Vas-12months-predicted` := predict(multiple_regression_model, newdata=biomarkers_covariates_patientid_regression_20)]
+biomarkers_covariates_patientid_regression_20[, `Vas-12months-predicted` := predict(multiple_regression_model, newdata = biomarkers_covariates_patientid_regression_20)]
 
 # Calculate residuals for the predicted 12 month VAS and add them as a new column.
-biomarkers_covariates_patientid_regression_20[, `Vas-12months-residuals`:= biomarkers_covariates_patientid_regression_20$`Vas-12months` - biomarkers_covariates_patientid_regression_20$`Vas-12months-predicted`]
+biomarkers_covariates_patientid_regression_20[, `Vas-12months-residuals` := biomarkers_covariates_patientid_regression_20$`Vas-12months` - biomarkers_covariates_patientid_regression_20$`Vas-12months-predicted`]
 
 # Plot the fitted values and residuals against actual 12-month VAS.
 attach(biomarkers_covariates_patientid_regression_20)
-par(mfrow=c(1, 2))
+par(mfrow = c(1, 2))
 plot(`Vas-12months`, `Vas-12months-predicted`)
 plot(`Vas-12months`, `Vas-12months-residuals`)
 detach()
@@ -298,5 +298,5 @@ detach()
 predicted_vas_prediction <- predict(multiple_regression_model, int="prediction", newdata = biomarkers_covariates_patientid_regression_20)
 predicted_vas_confidence <- predict(multiple_regression_model, int="confidence", newdata = biomarkers_covariates_patientid_regression_20)
 
-View(predicted_vas_confidence)
 View(predicted_vas_prediction)
+View(predicted_vas_confidence)
