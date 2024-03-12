@@ -268,7 +268,10 @@ cat("20% regression data prepared for", nrow(biomarkers_covariates_patientid_reg
 
 # Using 80% of the patient data, fit a multiple linear regression model with 12-month VAS as the response variable and the biomarker levels at inclusion and covariates as explanatory variables.
 multiple_regression_model <- lm(`Vas-12months` ~ `IL-8_0weeks` + `VEGF-A_0weeks` + `OPG_0weeks` + `TGF-beta-1_0weeks` + `IL-6_0weeks` + `CXCL9_0weeks` + `CXCL1_0weeks` + `IL-18_0weeks` + `CSF-1_0weeks` + `Age` + `Sex.(1=male,.2=female)` + `Smoker.(1=yes,.2=no)` + `VAS-at-inclusion`, biomarkers_covariates_patientid_regression_80)
-summary(multiple_regression_model)
+
+# Print the model's r2 and adjusted r2.
+cat("Regression model r squared:", summary(multiple_regression_model)$r.squared, "\n")
+cat("Regression model adjusted r squared:", summary(multiple_regression_model)$adj.r.squared, "\n")
 
 # Add the fitted values and residuals as new columns in the 80% data table.
 biomarkers_covariates_patientid_regression_80[, `Vas-12months-fitted` := predict(multiple_regression_model)]
